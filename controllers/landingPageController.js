@@ -1,5 +1,23 @@
 const landingPageCtrl = {}
+const request = require("request")
 const nodemailer = require("nodemailer")
+
+
+landingPageCtrl.getNews = async (req, res) => {
+  // everything; q=tesla; from=2021-01-15; to=2021-02-10; sortBy=popularity; sortBy=publishedAt;
+  // top-headlines; q=tesla; country=us;
+  request(`https://newsapi.org/v2/everything?q=campazzo&from=2021-01-15&sortBy=publishedAt&apiKey=${process.env.NEWS_API_KEY}`, function (error, response, body) {
+        //console.error('error:', error); // error
+        //console.log('statusCode:', response && response.statusCode); // status
+        //console.log('body:', body); // body
+        var newsJson = JSON.parse(body);
+        var news = newsJson.articles
+        // console.log(news); // json body
+        res.render("landingpage/landingpage", {news})
+  });
+}
+
+
 
 landingPageCtrl.contactForm = async (req, res) => {
   const { name, email, content } = req.body // Take data
