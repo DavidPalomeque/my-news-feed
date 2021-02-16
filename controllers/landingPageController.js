@@ -1,18 +1,39 @@
 const landingPageCtrl = {}
 const request = require("request")
 const nodemailer = require("nodemailer")
+const date = require('date-and-time');
 
 
 landingPageCtrl.getNews = async (req, res) => {
-  // everything; q=tesla; from=2021-01-15; to=2021-02-10; sortBy=popularity; sortBy=publishedAt; language=en;
-  // top-headlines; q=tesla; language=en; country=us;
-  request(`https://newsapi.org/v2/everything?q=campazzo&from=2021-01-16&sortBy=publishedAt&apiKey=${process.env.NEWS_API_KEY}`, function (error, response, body) {
+  let url;
+  let data = req.body;
+
+  // get
+  if (Object.keys(data).length === 0) {
+    url = `https://newsapi.org/v2/everything?qInTitle=bitcoin&apiKey=${process.env.NEWS_API_KEY}`
+  }
+
+  // post
+  if (Object.keys(data).length > 0) {
+    var dates = transformDate(data.date)
+    data.from = dates.from
+    data.to = dates.to
+    
+    if (data.endpoint == 'everything') {
+      url = `https://newsapi.org/v2/${data.endpoint}?qInTitle=${data.keyword}&language=${data.language}&from=${data.from}&to=${data.to}&sortBy=${data.sortBy}&apiKey=${process.env.NEWS_API_KEY}`
+    }
+    if (data.endpoint == 'top-headlines') {
+      url = `https://newsapi.org/v2/${data.endpoint}?qInTitle=${data.keyword}&language=${data.language}&apiKey=${process.env.NEWS_API_KEY}`
+    }
+  }
+
+  // news api request
+  request(url, function (error, response, body) {
         //console.error('error:', error); // error
         //console.log('statusCode:', response && response.statusCode); // status
         //console.log('body:', body); // body
         var newsJson = JSON.parse(body);
         var news = newsJson.articles
-        // console.log(news); // json body
         res.render("landingpage/landingpage", {news})
   });
 }
@@ -56,6 +77,38 @@ landingPageCtrl.contactForm = async (req, res) => {
     
   }
 
+}
+
+
+function transformDate(textDate) {
+  var dates = {}
+
+  switch (textDate) {
+    case 'today':
+      dates.from = date.format(new Date(), 'YYYY/MM/DD');
+      dates.to = date.format(new Date(), 'YYYY/MM/DD');
+      break;
+
+    case 'yesterday':
+      dates.from = date.format(date.addDays(new Date(), -1), 'YYYY/MM/DD');
+      dates.to = date.format(date.addDays(new Date(), -1), 'YYYY/MM/DD');
+      break;
+    
+    case 'lastWeek':
+      dates.from = date.format(date.addDays(new Date(), -7), 'YYYY/MM/DD');
+      dates.to = date.format(new Date(), 'YYYY/MM/DD');
+      break;
+
+    case 'lastMonth':
+      dates.from = date.format(date.addDays(new Date(), -28), 'YYYY/MM/DD'); // maybe 31?
+      dates.to = date.format(new Date(), 'YYYY/MM/DD');
+      break;
+  
+    default:
+      break;
+  }
+
+  return dates;
 }
 
 module.exports = landingPageCtrl
