@@ -1,8 +1,9 @@
 # MY NEWS FEED
 
 ## TODO
-- Add filters and render results in the view.
-- Use Materialize in frontend and make it beautiful. 
+- Test and make sure that API is working fine with current filters and code.
+- Re-do frontend views using Materialize.
+- Test and make sure nothing was broken when modifying views. Fix any issue.
 
 ## Clone project in your computer
 - git clone
