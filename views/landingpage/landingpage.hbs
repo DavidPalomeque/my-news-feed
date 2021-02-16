@@ -1,13 +1,78 @@
-<div class="row mx-auto" style="background-color:#D1D1D1" id="row1">
-    <div class="col-sm-12 col-md-6 mx-auto my-auto" style="font-style:italic;text-align:center">
-        <h4>Welcome to Ecommerce.</h4>
-        <h4>Where you can buy whatever you want.</h4>
-        <a href="/users/signup" class="btn btn-outline-success mx-auto m-2">CREATE ACCOUNT</a>
-        <a href="/users/login" class="btn btn-outline-success mx-auto m-2">LOGIN</a>
+<div class="row mx-auto mt-5" style="background-color:#D1D1D1" id="row1">
+    <div class="col-sm-12 col-md-8 mx-auto my-auto" style="font-style:italic;text-align:center">
+        <div class="card">
+            <div class="card-body">
+    
+                <form action="/" method="POST">
+
+                    <div class="mx-auto">
+                        <h4>Welcome to your feed</h4>
+                        <h5>search about the topics that interest you</h5>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12 col-md-4 mt-1">
+                            <div class="input-group">
+                                <select class="form-control" name="endpoint">
+                                    <option value="everything">All news</option>
+                                    <option value="top-headlines">Only Top Headlines</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-4 mt-1">
+                            <div class="input-group">
+                                <input name="keyword" type="text" class="form-control" placeholder="e.g., Bitcoin, NBA, Tesla" required>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-4 mt-1">
+                            <div class="input-group">
+                                <select class="form-control" name="language">
+                                    <option value="en">English</option>
+                                    <option value="ar">Arabic</option>
+                                    <option value="zh">Chinese (simplified)</option>
+                                    <option value="fr">French</option>
+                                    <option value="de">German</option>
+                                    <option value="hi">Hindi</option>
+                                    <option value="it">Italian</option>
+                                    <option value="pt">Portuguese</option>
+                                    <option value="ru">Russian</option>
+                                    <option value="es">Spanish</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12 col-md-4 mt-2">
+                            <div class="input-group">
+                                <select class="form-control" name="date">
+                                    <option value="today">Today</option>
+                                    <option value="yesterday">Yesterday</option>
+                                    <option value="lastWeek">Last week</option>
+                                    <option value="lastMonth">Last month</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-4 mt-2">
+                            <div class="input-group">
+                                <select class="form-control" name="sortBy">
+                                    <option value="popularity">More popular</option>
+                                    <option value="publishedAt">More recent</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-4 mt-2">
+                            <button type="submit" class="btn btn-primary btn-block">Search</button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
     </div>
 </div>
 
-<div class="row mx-auto">
+<div class="row mx-auto mt-5" style="background-color:#D1D1D1">
     {{#if news}}
     <div class="row">
     {{#each news}}
@@ -29,7 +94,7 @@
     {{/if}}
 </div>
 
-<div class="row mx-auto" style="background-color:#A3A3A3;" id="row4">
+<div class="row mx-auto mt-5" style="background-color:#D1D1D1">
     <div class="col-sm-12 col-md-6 mx-auto" style="text-align: center;">
         <h1>CONTACT WITH THE DEVELOPER</h1>
         <form class="row" action="/contactForm" method="post">
@@ -49,28 +114,3 @@
     </div>
 </div>
 
-
-<style>
-
-@media screen and (min-width: 1025px) {
-#row1 { height: 500px; }
-#row2 { height: 400px; }
-#row3 { height: 500px; }
-#row4 { height: 550px; }
-}
-
-@media screen and (max-width: 1024px) and (min-width: 700px) {
-#row1 { height: 400px; }
-#row2 { height: 400px; }
-#row3 { height: 500px; }
-#row4 { height: 600px; }
-}
-
-@media screen and (max-width: 699px) {
-#row1 { height: 400px; }
-#row2 { height: 500px; }
-#row3 { height: 1000px; }
-#row4 { height: 700px; }
-}
-
-</style>

@@ -1,8 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #00ba13;">
   {{#if user}}
-  <a class="navbar-brand" href="/products">ECOMMERCE</a>
+  <a class="navbar-brand" href="/products">YOUR FEED</a>
   {{else}}
-  <a class="navbar-brand" href="/">ECOMMERCE</a>
+  <a class="navbar-brand" href="/">YOUR FEED</a>
   {{/if}}
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -11,20 +11,17 @@
     <ul class="navbar-nav ml-auto">
       {{#if user}}
       <li class="nav-item active">
-        <a class="nav-link" href="/products">PRODUCTS</a>
+        <a class="nav-link" href="/products">NEWS</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="/shopcart/{{user._id}}">SHOPCART</a>
+        <a class="nav-link" href="/shopcart/{{user._id}}">SAVED</a>
       </li>
       <li class="nav-item active">
         <a class="nav-link" href="/users/logout">LOGOUT</a>
       </li>
       {{else}}
       <li class="nav-item active">
-        <a class="nav-link" href="/">GET STARTED</a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="/products">PRODUCTS</a>
+        <a class="nav-link" href="/">NEWS</a>
       </li>
       <li class="nav-item active">
         <a class="nav-link" href="/users/signup">SIGN UP</a>
