@@ -1,8 +1,8 @@
 const landingPageCtrl = {}
 const request = require("request")
 const nodemailer = require("nodemailer")
-const date = require('date-and-time');
 
+const datesFormatHelper = require("../helper/datesFormatHelper")
 
 landingPageCtrl.getNews = async (req, res) => {
   let url;
@@ -15,7 +15,7 @@ landingPageCtrl.getNews = async (req, res) => {
 
   // post
   if (Object.keys(data).length > 0) {
-    var dates = transformDate(data.date)
+    var dates = datesFormatHelper.transformDate(data.date)
     data.from = dates.from
     data.to = dates.to
     
@@ -77,38 +77,6 @@ landingPageCtrl.contactForm = async (req, res) => {
     
   }
 
-}
-
-
-function transformDate(textDate) {
-  var dates = {}
-
-  switch (textDate) {
-    case 'today':
-      dates.from = date.format(new Date(), 'YYYY/MM/DD');
-      dates.to = date.format(new Date(), 'YYYY/MM/DD');
-      break;
-
-    case 'yesterday':
-      dates.from = date.format(date.addDays(new Date(), -1), 'YYYY/MM/DD');
-      dates.to = date.format(date.addDays(new Date(), -1), 'YYYY/MM/DD');
-      break;
-    
-    case 'lastWeek':
-      dates.from = date.format(date.addDays(new Date(), -7), 'YYYY/MM/DD');
-      dates.to = date.format(new Date(), 'YYYY/MM/DD');
-      break;
-
-    case 'lastMonth':
-      dates.from = date.format(date.addDays(new Date(), -28), 'YYYY/MM/DD'); // maybe 31?
-      dates.to = date.format(new Date(), 'YYYY/MM/DD');
-      break;
-  
-    default:
-      break;
-  }
-
-  return dates;
 }
 
 module.exports = landingPageCtrl
