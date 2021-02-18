@@ -2,11 +2,46 @@ const landingPageCtrl = {}
 const request = require("request")
 const nodemailer = require("nodemailer")
 
-const datesFormatHelper = require("../helper/datesFormatHelper")
+const datesFormatHelper = require("../helpers/datesFormatHelper")
+const filterOptions = require("../helpers/filterOptions.json")
 
 landingPageCtrl.getNews = async (req, res) => {
   let url;
   let data = req.body;
+  let options = filterOptions.options;
+
+  // todo: mover a un helper propio
+  options.endpoint.forEach(o => {
+    if (o.value === data.endpoint) {
+      o.selected = true
+    } else {
+      delete o.selected
+    }
+  });
+
+  options.language.forEach( o => {
+    if (o.value === data.language) {
+      o.selected = true
+    } else {
+      delete o.selected
+    }
+  })
+
+  options.date.forEach( o => {
+    if (o.value === data.date) {
+      o.selected = true
+    } else {
+      delete o.selected
+    }
+  })
+
+  options.sortBy.forEach( o => {
+    if (o.value === data.sortBy) {
+      o.selected = true
+    } else {
+      delete o.selected
+    }
+  })
 
   // get
   if (Object.keys(data).length === 0) {
@@ -34,7 +69,7 @@ landingPageCtrl.getNews = async (req, res) => {
         //console.log('body:', body); // body
         var newsJson = JSON.parse(body);
         var news = newsJson.articles
-        res.render("landingpage/landingpage", {news})
+        res.render("landingpage/landingpage", {news, options, data})
   });
 }
 

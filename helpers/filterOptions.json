@@ -1,0 +1,30 @@
+{
+    "options": {
+        "endpoint": [
+            {"name":"All news", "value":"everything"},
+            {"name":"Only Top Headlines", "value":"top-headlines"}
+        ],
+        "language": [
+            {"name":"English", "value":"en"},
+            {"name":"Arabic", "value":"ar"},
+            {"name":"Chinese", "value":"zh"},
+            {"name":"French", "value":"fr"},
+            {"name":"German", "value":"de"},
+            {"name":"Hindi", "value":"hi"},
+            {"name":"Italian", "value":"it"},
+            {"name":"Portuguese", "value":"pt"},
+            {"name":"Russian", "value":"ru"},
+            {"name":"Spanish", "value":"es"}
+        ],
+        "date": [
+            {"name":"Today", "value":"today"},
+            {"name":"Yesterday", "value":"yesterday"},
+            {"name":"Last week", "value":"lastWeek"},
+            {"name":"Last month", "value":"lastMonth"}
+        ],
+        "sortBy": [
+            {"name":"More popular", "value":"popularity"},
+            {"name":"More recent", "value":"publishedAt"}
+        ]
+    }
+}
