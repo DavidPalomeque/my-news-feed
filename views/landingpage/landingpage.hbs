@@ -1,4 +1,4 @@
-<div class="row mx-auto mt-5" style="background-color:#D1D1D1" id="row1">
+<div class="row mx-auto mt-5">
     <div class="col-sm-12 col-md-8 mx-auto my-auto" style="font-style:italic;text-align:center">
         <div class="card">
             <div class="card-body">
@@ -13,7 +13,7 @@
                     <div class="row">
                         <div class="col-sm-12 col-md-4 mt-1">
                             <div class="input-group">
-                                <select class="form-control" name="endpoint">
+                                <select class="custom-select" name="endpoint">
                                     {{#if options.endpoint}}
                                       {{#each options.endpoint}}
                                         <option value="{{this.value}}" {{#if this.selected}} selected {{/if}}> {{this.name}}</option>
@@ -30,7 +30,7 @@
                         </div>
                         <div class="col-sm-12 col-md-4 mt-1">
                             <div class="input-group">
-                                <select class="form-control" name="language">
+                                <select class="custom-select" name="language">
                                     {{#if options.language}}
                                       {{#each options.language}}
                                         <option value="{{this.value}}" {{#if this.selected}} selected {{/if}}> {{this.name}}</option>
@@ -44,7 +44,7 @@
                     <div class="row">
                         <div class="col-sm-12 col-md-4 mt-2">
                             <div class="input-group">
-                                <select class="form-control" name="date">
+                                <select class="custom-select" name="date">
                                     {{#if options.date}}
                                       {{#each options.date}}
                                         <option value="{{this.value}}" {{#if this.selected}} selected {{/if}}>{{this.name}}</option>
@@ -55,7 +55,7 @@
                         </div>
                         <div class="col-sm-12 col-md-4 mt-2">
                             <div class="input-group">
-                                <select class="form-control" name="sortBy">
+                                <select class="custom-select" name="sortBy">
                                     {{#if options.sortBy}}
                                       {{#each options.sortBy}}
                                         <option value="{{this.value}}" {{#if this.selected}} selected {{/if}}>{{this.name}}</option>
@@ -65,7 +65,7 @@
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-4 mt-2">
-                            <button type="submit" class="btn btn-primary btn-block">Search</button>
+                            <button type="submit" class="btn btn-outline-primary btn-block">Search</button>
                         </div>
                     </div>
 
@@ -75,18 +75,18 @@
     </div>
 </div>
 
-<div class="row mx-auto mt-5" style="background-color:#D1D1D1">
+<div class="row mx-auto mt-5">
     {{#if news}}
     <div class="row">
     {{#each news}}
-    <div class="col-3 d-flex align-items-stretch">
+    <div class="col-sm-12 col-md-6 col-lg-3 d-flex align-items-stretch">
       <div class="card mb-3 mr-3 ml-3">
         <img src="{{urlToImage}}" class="card-img-top">
-        <div class="card-body">
-            <h5 class="card-title">{{title}}</h5> <span>{{source.name}} - {{author}}</span>
+        <div class="card-body mb-5">
+            <h5 class="card-title font-weight-bold">{{title}}</h5> <span style="color: grey;">{{source.name}} - {{author}}</span>
             <p class="card-text">{{description}}</p>
         </div>
-        <div class="card-body mr-auto">
+        <div class="card-footer mt-3" style="position:absolute;bottom:0;width:100%">
             <a href="{{url}}" class="card-link" style="color:green">Read+</a>
             <a href="#" class="card-link" style="color:black">Save <i class="far fa-bookmark"></i></a>
         </div>
@@ -97,9 +97,11 @@
     {{/if}}
 </div>
 
-<div class="row mx-auto mt-5" style="background-color:#D1D1D1">
+<div class="row mx-auto mt-5 mb-3">
     <div class="col-sm-12 col-md-6 mx-auto" style="text-align: center;">
-        <h1>CONTACT WITH THE DEVELOPER</h1>
+      <div class="card">
+        <div class="card-body">
+            <h1>Contact the Developer</h1>
         <form class="row" action="/contactForm" method="post">
             <div class="input-group col-sm-12 col-md-6">
                 <input class="form-control m-3" type="text" name="name" placeholder="Your Name">
@@ -111,9 +113,11 @@
                 <textarea class="form-control m-3" name="content" rows="10" placeholder="Message"></textarea>
             </div>
             <div class="input-group col-sm-8 mx-auto">
-                <button type="submit" class="btn btn-success btn-block">SEND</button>
+                <button type="submit" class="btn btn-outline-success btn-block">SEND</button>
             </div>
         </form>
+        </div>  
+      </div>
     </div>
 </div>
 
