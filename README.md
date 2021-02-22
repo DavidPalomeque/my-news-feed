@@ -1,8 +1,8 @@
 # MY NEWS FEED
 
 ## TODO
-- Re-do frontend views using Materialize.
-- Test and make sure nothing was broken when modifying views. Fix any issue.
+- Create new DB or edit existing one
+- Registration & Login functionalities
 - Submit project to heroku
 
 ## Clone project in your computer
