@@ -4,34 +4,41 @@ const bcrypt = require("bcryptjs")
 
 module.exports = function (passport) {
     passport.use(
-        new LocalStrategy({usernameField : "email"} , (email , password , done) => { // email & password will be the taken data
-            User.findOne({email : email}) // find by email
-            .then(user => {
-                if (!user) { // if the email is wrong
-                    return done(null , false , {message : "Incorrect Email!"})
-                }
-                bcrypt.compare(password , user.password , (err , isMatch) => { // compare passwords
-                    if(err) throw err // if there is an error
+        new LocalStrategy({usernameField : "email"} , (email , password , done) => {
+            User.findOne({email : email})
 
-                    if (isMatch) { // if the passwords match
+            .then(user => {
+                // if email is wrong
+                if (!user) {
+                    return done(null , false , {message:"Incorrect Email!"})
+                }
+                // compare passwords
+                bcrypt.compare(password , user.password , (err , isMatch) => {
+                    if(err) throw err
+                    // check password
+                    if (isMatch) {
                         return done(null , user)
                     } else {
-                        return done(null , false , {message : "Incorrect Password !"})
+                        return done(null , false , {message:"Incorrect Password!"})
                     }
                 })
             })
-            .catch(err => { // if some error happen in the process
+
+            // if some error happen in the process
+            .catch(err => {
                 console.log(err);
                 return done(null , false , {message : "Some error happened..."})
             })
         })
     )
 
-    passport.serializeUser(function(user , done) { // serialize user
+    // serialize user
+    passport.serializeUser(function(user , done) {
         done(null , user.id)
     })
 
-    passport.deserializeUser(function(id , done) { // deserialize user
+    // deserialize user
+    passport.deserializeUser(function(id , done) {
         User.findById(id , function(err , user) {
             done(err , user)
         })
