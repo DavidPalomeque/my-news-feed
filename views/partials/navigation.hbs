@@ -10,7 +10,7 @@
         <a class="nav-link" href="/">NEWS</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="/shopcart/{{user._id}}">SAVED</a>
+        <a class="nav-link saved-page">SAVED</a> <!--href="/shopcart/{{user._id}}"-->
       </li>
       <li class="nav-item active">
         <a class="nav-link" href="/users/logout">LOGOUT</a>
@@ -29,3 +29,9 @@
     </ul>
   </div>
 </nav>
+
+<script>
+    $('.saved-page').on('click', function(){
+        alert("This functionality is still in progress.")
+    })
+</script>
