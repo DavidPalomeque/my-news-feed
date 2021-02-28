@@ -1,10 +1,10 @@
 # MY NEWS FEED
 
 ## TODO
-- "Read new in a new window" functionality
+- Add a JQuery code that shows/hides form inputs depending on the "news type" selected option
+- Add an "In progress" alert where there is a non-finished functionality
 - Submit project to heroku
 - Start to think how the "my saved news list" would be
-- Add "in progress" alert where is necessary
 
 ## Clone project in your computer
 - git clone
