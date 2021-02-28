@@ -1,7 +1,6 @@
 # MY NEWS FEED
 
 ## TODO
-- Manage url redirects after login
 - Delete non-used views & functionalities
 - Submit project to heroku
 - Start to think how the "my saved news list" would be
