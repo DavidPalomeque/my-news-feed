@@ -11,7 +11,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-sm-12 col-md-4 mt-1">
+                        <div class="col-sm-12 col-md-4 mt-1 endpoint-col">
                             <div class="input-group">
                                 <select class="custom-select" name="endpoint">
                                     {{#if options.endpoint}}
@@ -22,13 +22,13 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-sm-12 col-md-4 mt-1">
+                        <div class="col-sm-12 col-md-4 mt-1 keyword-col">
                             <div class="input-group">
                                 <input name="keyword" type="text" class="form-control" placeholder="e.g., Bitcoin"  
                                 {{#if data.keyword}} value="{{data.keyword}}" {{/if}} required>
                             </div>
                         </div>
-                        <div class="col-sm-12 col-md-4 mt-1">
+                        <div class="col-sm-12 col-md-4 mt-1 language-col">
                             <div class="input-group">
                                 <select class="custom-select" name="language">
                                     {{#if options.language}}
@@ -39,10 +39,7 @@
                                 </select>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-sm-12 col-md-4 mt-2">
+                        <div class="col-sm-12 col-md-4 mt-2 date-col">
                             <div class="input-group">
                                 <select class="custom-select" name="date">
                                     {{#if options.date}}
@@ -53,7 +50,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-sm-12 col-md-4 mt-2">
+                        <div class="col-sm-12 col-md-4 mt-2 sortBy-col">
                             <div class="input-group">
                                 <select class="custom-select" name="sortBy">
                                     {{#if options.sortBy}}
@@ -64,7 +61,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-sm-12 col-md-4 mt-2">
+                        <div class="col-sm-12 col-md-4 mt-2 search-col">
                             <button type="submit" class="btn btn-outline-primary btn-block">Search</button>
                         </div>
                     </div>
@@ -121,3 +118,33 @@
     </div>
 </div>
 
+
+
+<!-- JQuery code to manage inputs behaviour -->
+<!-- In both cases when page loads and when endpoint selected value changes -->
+<!-- the function "manageInputs" is activated, hiding & showing the necessary inputs for each type of request -->
+<script>
+    $( document ).ready(function() {
+        manageInputs($('select[name="endpoint"]').val())
+    });
+    
+    $('select[name="endpoint"]').on('change', function() {
+        manageInputs(this.value)
+    });
+
+    function manageInputs(endpoint){
+        if(endpoint == 'everything'){
+            $('.keyword-col').show()
+            $('.date-col').show()
+            $('.sortBy-col').show()
+            $('input[name="keyword"]').prop('required',true);
+        }
+
+        if(endpoint == 'top-headlines'){
+            $('.keyword-col').hide()
+            $('.date-col').hide()
+            $('.sortBy-col').hide()
+            $('input[name="keyword"]').prop('required',false);
+        }        
+    }
+</script>
