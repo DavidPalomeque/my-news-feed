@@ -57,7 +57,6 @@ app.use((req , res , next) => {
 // ROUTES
 app.use(require("./routes/landingPageRouter"))
 app.use(require("./routes/userRouter"))
-app.use(require("./routes/productRouter"))
 app.use(require("./routes/shopcartRouter"))
 
 // SERVER
