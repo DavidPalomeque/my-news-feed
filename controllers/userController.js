@@ -61,7 +61,7 @@ userCtrl.login = (req , res , next) => {
         res.redirect("/users/login")
     } else {
         passport.authenticate("local" , {
-            successRedirect : "/products" ,
+            successRedirect : "/" ,
             failureRedirect : "/users/login",
             successFlash : true,
             failureFlash : true
