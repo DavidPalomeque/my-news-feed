@@ -1,7 +1,6 @@
 # MY NEWS FEED
 
 ## TODO
-- Submit project to heroku
 - Start to think how the "my saved news list" would be
 
 ## Clone project in your computer
