@@ -1,7 +1,6 @@
 # MY NEWS FEED
 
 ## TODO
-- Hide the contact form
 - Submit project to heroku
 - Start to think how the "my saved news list" would be
 
