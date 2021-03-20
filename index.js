@@ -21,7 +21,11 @@ app.engine(".hbs" , exphbs({
     defaultLayout : "main" ,
     layoutsDir : path.join(app.get("views") , "layouts") ,
     partialsDir : path.join(app.get("views") , "partials") ,
-    extname : ".hbs"
+    extname : ".hbs",
+    runtimeOptions: {
+        allowProtoPropertiesByDefault: true,
+        allowProtoMethodsByDefault: true
+      }
 }))
 app.set("view engine" , "hbs")
 
@@ -50,14 +54,14 @@ app.use((req , res , next) => {
     res.locals.success_msg = req.flash("success_msg")
     res.locals.error_msg = req.flash("error_msg")
     res.locals.error = req.flash("error")
-    res.locals.user = req.user || null
+    res.locals.user = req.user
     next()
 })
 
 // ROUTES
 app.use(require("./routes/landingPageRouter"))
 app.use(require("./routes/userRouter"))
-app.use(require("./routes/shopcartRouter"))
+app.use(require("./routes/savednewsRouter"))
 
 // SERVER
 app.listen(app.get("port") , () => {

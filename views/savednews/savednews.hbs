@@ -1,0 +1,24 @@
+<div class="row mx-auto">
+
+    {{#if shopcart}}
+
+    {{#if user}}
+    <div class="col-sm-12 mt-3">
+        <a href="/savednews/clean/{{user._id}}" class="btn btn-sm btn-outline-danger btn-block"> CLEAN ALL </a>
+    </div>
+    {{/if}}
+
+    <div class="col-sm-12 mx-auto">
+        <h1>Here goes the saved news</h1>
+    </div>
+
+    {{else}}
+    
+    <div class="col-sm-12 col-md-8 col-lg-6 mx-auto mt-5">
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <h3>There is no news to show !</h3>
+        </div>
+    </div>
+
+    {{/if}}
+</div>
